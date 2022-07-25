@@ -11,6 +11,9 @@ router.get('/folders/:id',controllers.getListbyFolderId)
 router.get('/list/:id',controllers.getTodoByListId)
 router.get('/todo/:search',controllers.getTodoBySearch)
 
+router.post('/folders',controllers.createFolder)
+router.post('/folders/:id',controllers.createList)
+router.post('/list/:id',controllers.createToDo)
 
 
 
