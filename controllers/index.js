@@ -100,11 +100,14 @@ const deleteFolder = async(req,res) =>{
     try{
         const { id }= await  req.params
         const lists= await List.find({folder: id})
-       const deletedToDo = lists.forEach( async ({list})  =>{ await ToDo.findByIdAndDelete({list: list._id})})
-       console.log(deletedToDo)
-       const deletedList = await List.findByIdAndDelete({folder: id})
-       const deletedFolder = await  Folder.findByIdAndDelete(id)
-        if(deletedFolder && deletedList){
+        let deletedToDo
+        lists.forEach( async (list)  =>{ 
+         deletedToDo = await ToDo.deleteMany({list: list._id})
+        console.log(results)
+        })
+       const deletedList = await List.deleteMany({folder: id})
+       const deletedFolder = await  Folder.deleteMany({ _id: id})
+        if(deletedFolder && deletedList && deletedToDo){
             return res.status(200).send("Folder deleted");
         }
         throw new Error("Folder not found");
@@ -116,9 +119,9 @@ const deleteFolder = async(req,res) =>{
 
 const deleteList = async(req,res) => {
     try{
-        const {id} = req.params
-        const deletedToDo = await ToDo.findByIdAndDelete({list: id})
-        const deletedList = await List.findByIdAndDelete({id})
+        const {id} =  req.params
+        const deletedToDo= await ToDo.deleteMany({list: id})
+        const deletedList = await List.deleteMany({_id:id})
         if(deletedToDo && deletedList){
             return res.status(200).send("List deleted");
         }
@@ -131,7 +134,7 @@ const deleteList = async(req,res) => {
 const deleteToDo = async(req,res) =>{
     try{
         const {id} = req.params
-        const deletedToDo = await ToDo.findByIdAndDelete({id})
+        const deletedToDo = await ToDo.deleteMany({_id:id})
         if(deletedToDo){
             return res.status(200).send("ToDo deleted");
         }
