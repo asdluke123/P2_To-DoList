@@ -131,3 +131,15 @@ const deleteToDo = async(req,res) =>{
         }
     }
 
+    module.exports = {
+        getAllFolders,
+        getListbyFolderId,
+        getTodoByListId,
+        getTodoBySearch,
+        updateFolder,
+        updateList,
+        updatetoDo,
+        deleteFolder,
+        deleteList,
+        deleteToDo
+    }
