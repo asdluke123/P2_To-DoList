@@ -2,10 +2,7 @@ const { Router } = require('express')
 const controllers = require('../controllers')
 const router = Router()
 
-router.get('/', (req, res) => {
-  res.send('I am root!')
-})
-
+router.get('/home', controllers.getBaseLists)
 router.get('/folders', controllers.getAllFolders)
 router.get('/folders/:id',controllers.getListbyFolderId)
 router.get('/list/:id',controllers.getTodoByListId)
@@ -19,8 +16,8 @@ router.put('/folders',controllers.updateFolder)
 router.put('/folders/:id',controllers.updateList)
 router.put('/list/:id',controllers.updatetoDo)
 
-router.delete('/folders',controllers.deleteFolder)
-router.delete('/folders/:id',controllers.deleteList)
-router.delete('/list/:id',controllers.deleteToDo)
+router.delete('/folders/:id',controllers.deleteFolder)
+router.delete('/list/:id',controllers.deleteList)
+router.delete('/todo/:id',controllers.deleteToDo)
 
 module.exports = router

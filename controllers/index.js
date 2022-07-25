@@ -8,11 +8,20 @@ const getAllFolders = async(req,res) =>{
         return res.status(500).send(e.message)
     }
 }
-
+const getBaseLists = async(req,res) =>{
+    try{
+        // const faviorte = await List.find({name:'Faviortes'})
+        // const tasks = await List.find({name:'Tasks'})
+        const lists = await List.find({folder: {$exists: false}})
+        return res.status(200).json({lists})
+    }catch(e){
+        return res.status(500).send(e.message)
+    }
+}
 const getListbyFolderId = async(req,res) =>{
     try{
-        const {folderId} = await req.params
-        const lists = await List.find({folder: folderId})
+        const {id} = await req.params
+        const lists = await List.find({folder: id})
         return res.status(200).json({lists})
     }catch(e){
         return res.status(500).send(e.message)
@@ -20,8 +29,8 @@ const getListbyFolderId = async(req,res) =>{
 }
 const getTodoByListId = async(req,res) =>{
     try{
-        const {listId} = await req.params
-        const todos = await ToDo.find({list: listId})
+        const {id} = await req.params
+        const todos = await ToDo.find({list: id})
         return res.status(200).json({todos})
     }catch(e){
         return res.status(500).send(e.message)
@@ -29,8 +38,8 @@ const getTodoByListId = async(req,res) =>{
 }
 const getTodoBySearch = async(req,res) =>{
     try{
-        const {search} = await req.params
-        const searchToDos = await ToDo.find({toDo: {$regex: search}})
+        const {id} = await req.params
+        const searchToDos = await ToDo.find({toDo: {$regex: id}})
         return res.status(200).json({searchToDos})
     }catch(e){
         return res.status(500).send(e.message)
@@ -89,11 +98,12 @@ const updateFolder = async(req,res) =>{
 }
 const deleteFolder = async(req,res) =>{
     try{
-        const { id }= req.params
-        const {lists}= List.find({folder: id})
-        const deletedToDo = await lists.forEach((list) =>{ToDo.findByIdAndDelete({list: list._id})})
-        const deletedList = await List.findByIdAndDelete({folder: id})
-        const deletedFolder = await  Folder.findByIdAndDelete(id)
+        const { id }= await  req.params
+        const lists= await List.find({folder: id})
+       const deletedToDo = lists.forEach( async ({list})  =>{ await ToDo.findByIdAndDelete({list: list._id})})
+       console.log(deletedToDo)
+       const deletedList = await List.findByIdAndDelete({folder: id})
+       const deletedFolder = await  Folder.findByIdAndDelete(id)
         if(deletedFolder && deletedList){
             return res.status(200).send("Folder deleted");
         }
@@ -107,7 +117,7 @@ const deleteFolder = async(req,res) =>{
 const deleteList = async(req,res) => {
     try{
         const {id} = req.params
-        const deletedToDo = await ToDo.findByIdAndDelete({folder: id})
+        const deletedToDo = await ToDo.findByIdAndDelete({list: id})
         const deletedList = await List.findByIdAndDelete({id})
         if(deletedToDo && deletedList){
             return res.status(200).send("List deleted");
@@ -136,6 +146,7 @@ const deleteToDo = async(req,res) =>{
         getListbyFolderId,
         getTodoByListId,
         getTodoBySearch,
+        getBaseLists,
         createFolder,
         createList,
         createToDo,
