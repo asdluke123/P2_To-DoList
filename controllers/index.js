@@ -10,8 +10,6 @@ const getAllFolders = async(req,res) =>{
 }
 const getBaseLists = async(req,res) =>{
     try{
-        // const faviorte = await List.find({name:'Faviortes'})
-        // const tasks = await List.find({name:'Tasks'})
         const lists = await List.find({folder: {$exists: false}})
         return res.status(200).json({lists})
     }catch(e){
