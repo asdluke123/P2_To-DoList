@@ -19,6 +19,8 @@ router.put('/folders',controllers.updateFolder)
 router.put('/folders/:id',controllers.updateList)
 router.put('/list/:id',controllers.updatetoDo)
 
-
+router.delete('/folders',controllers.deleteFolder)
+router.delete('/folders/:id',controllers.deleteList)
+router.delete('/list/:id',controllers.deleteToDo)
 
 module.exports = router
