@@ -63,4 +63,27 @@ const createFolder = async(req,res) =>{
         return res.status(500).send(e.message)
     }
 }
-
+const updatetoDo = async(req,res) =>{
+    try{
+        const todo = await ToDo.findByIdAndUpdate(req.params.id,req.body,{new:true})
+        res.status(200).json(todo)
+    }catch(e){
+        return res.status(500).send(e.message)
+    }
+}
+const updateList = async(req,res) =>{
+    try{
+        const list = await List.findByIdAndUpdate(req.params.id,req.body,{new:true})
+        res.status(200).json(list)
+    }catch(e){
+        return res.status(500).send(e.message)
+    }
+}
+const updateFolder = async(req,res) =>{
+    try{
+        const folder = await Folder.findByIdAndUpdate(req.params.id,req.body,{new:true})
+        res.status(200).json(folder)
+    }catch(e){
+        return res.status(500).send(e.message)
+    }
+}
