@@ -87,3 +87,47 @@ const updateFolder = async(req,res) =>{
         return res.status(500).send(e.message)
     }
 }
+const deleteFolder = async(req,res) =>{
+    try{
+        const { id }= req.params
+        const {lists}= List.find({folder: id})
+        const deletedToDo = await lists.forEach((list) =>{ToDo.findByIdAndDelete({list: list._id})})
+        const deletedList = await List.findByIdAndDelete({folder: id})
+        const deletedFolder = await  Folder.findByIdAndDelete(id)
+        if(deletedFolder && deletedList){
+            return res.status(200).send("Folder deleted");
+        }
+        throw new Error("Folder not found");
+    }catch (error) {
+        return res.status(500).send(error.message);
+        }
+        
+}
+
+const deleteList = async(req,res) => {
+    try{
+        const {id} = req.params
+        const deletedToDo = await ToDo.findByIdAndDelete({folder: id})
+        const deletedList = await List.findByIdAndDelete({id})
+        if(deletedToDo && deletedList){
+            return res.status(200).send("List deleted");
+        }
+        throw new Error("List not found");
+    }catch (error) {
+        return res.status(500).send(error.message);
+        }
+}
+
+const deleteToDo = async(req,res) =>{
+    try{
+        const {id} = req.params
+        const deletedToDo = await ToDo.findByIdAndDelete({id})
+        if(deletedToDo){
+            return res.status(200).send("ToDo deleted");
+        }
+        throw new Error("ToDo not found");
+    }catch (error) {
+        return res.status(500).send(error.message);
+        }
+    }
+
