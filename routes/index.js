@@ -6,6 +6,8 @@ router.get('/', (req, res) => {
   res.send('I am root!')
 })
 
+router.get('')
+
 
 
 module.exports = router

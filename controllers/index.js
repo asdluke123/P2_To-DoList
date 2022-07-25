@@ -1,4 +1,4 @@
-const {Folder,List,ToDo} = require("../models")
+const { Folder,List,ToDo } = require('../models')
 
 const getAllFolders = async(req,res) =>{
     try{

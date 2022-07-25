@@ -7,7 +7,7 @@ const ToDo = new Schema(
         toDo: {type: String, required: true},
         complete: {type: Boolean,required:true},
         list: {type:Schema.Types.ObjectId,ref: "List",required:true},
-        note:{type:String,required:flase},
+        note:{type:String,required:false},
         important:{type: Boolean,required:true}
     },{timestamps:true}
 )
