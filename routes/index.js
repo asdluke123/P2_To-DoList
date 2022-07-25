@@ -15,6 +15,10 @@ router.post('/folders',controllers.createFolder)
 router.post('/folders/:id',controllers.createList)
 router.post('/list/:id',controllers.createToDo)
 
+router.put('/folders',controllers.updateFolder)
+router.put('/folders/:id',controllers.updateList)
+router.put('/list/:id',controllers.updatetoDo)
+
 
 
 module.exports = router
