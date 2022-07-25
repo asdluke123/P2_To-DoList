@@ -36,3 +36,31 @@ const getTodoBySearch = async(req,res) =>{
         return res.status(500).send(e.message)
     }
 }
+const createToDo = async(req,res) =>{
+    try{
+        const toDo = await new ToDo(req.body)
+        await toDo.save()
+        return res.status(201).json({toDo})
+    }catch(e){
+        return res.status(500).send(e.message)
+    }
+}
+const createList = async(req,res) =>{
+    try{
+        const list = await new List(req.body)
+        await list.save()
+        return res.status(201).json({list})
+    }catch(e){
+        return res.status(500).send(e.message)
+    }
+}
+const createFolder = async(req,res) =>{
+    try{
+        const folder = await new Folder(req.body)
+        await folder.save()
+        return res.status(201).json({folder})
+    }catch(e){
+        return res.status(500).send(e.message)
+    }
+}
+
