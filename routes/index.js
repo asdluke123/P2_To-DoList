@@ -12,9 +12,9 @@ router.post('/folders',controllers.createFolder)
 router.post('/folders/:id',controllers.createList)
 router.post('/list/:id',controllers.createToDo)
 
-router.put('/folders',controllers.updateFolder)
-router.put('/folders/:id',controllers.updateList)
-router.put('/list/:id',controllers.updatetoDo)
+router.put('/folders/:id',controllers.updateFolder)
+router.put('/list/:id',controllers.updateList)
+router.put('/todo/:id',controllers.updatetoDo)
 
 router.delete('/folders/:id',controllers.deleteFolder)
 router.delete('/list/:id',controllers.deleteList)

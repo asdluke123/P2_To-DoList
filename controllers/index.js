@@ -105,10 +105,13 @@ const deleteFolder = async(req,res) =>{
         })
        const deletedList = await List.deleteMany({folder: id})
        const deletedFolder = await  Folder.deleteMany({ _id: id})
-        if(deletedFolder && deletedList && deletedToDo){
+       if(deletedToDo != null || lists != null){
+        if(deletedFolder){
             return res.status(200).send("Folder deleted");
         }
+        
         throw new Error("Folder not found");
+        }   
     }catch (error) {
         return res.status(500).send(error.message);
         }
