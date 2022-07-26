@@ -8,9 +8,17 @@ const getAllFolders = async(req,res) =>{
         return res.status(500).send(e.message)
     }
 }
-const getBaseLists = async(req,res) =>{
+const getTasksLists = async(req,res) =>{
     try{
-        const lists = await List.find({folder: {$exists: false}})
+        const lists = await List.find({name: 'Tasks'})
+        return res.status(200).json({lists})
+    }catch(e){
+        return res.status(500).send(e.message)
+    }
+}
+const getFavoriteList = async(req,res) =>{
+    try{
+        const lists = await List.find({name: 'Faviortes'})
         return res.status(200).json({lists})
     }catch(e){
         return res.status(500).send(e.message)
@@ -150,7 +158,8 @@ const deleteToDo = async(req,res) =>{
         getListbyFolderId,
         getTodoByListId,
         getTodoBySearch,
-        getBaseLists,
+        getFavoriteList,
+        getTasksLists,
         createFolder,
         createList,
         createToDo,
