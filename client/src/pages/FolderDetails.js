@@ -12,8 +12,8 @@ const FolderDetails = () =>{
     let navigate = useNavigate()
 
 
-    const showListDetials = (listId) =>{
-        navigate(`/list/${listId}`)
+    const showListDetials = (list) =>{
+        navigate(`/list/${list.name}/${list._id}`)
     }
 
     const renderLists = async () =>{

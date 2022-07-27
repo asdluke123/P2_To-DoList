@@ -6,6 +6,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
     const [newToDoNote,setNewToDoNote] = useState()
     const [newFolderName,setNewFolderName] = useState()
     const [newFolderType,setNewFolderType] = useState()
+    const [newListName,setNewListName] = useState()
     const updateItem = async (id,item) =>{
         if(item === 'todo'){
             try{
@@ -14,27 +15,34 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
                     note: newToDoNote,
                     isEdit: false
                 })
-                console.log(res)
                 render()
             }catch(e){
                 console.error(e)
             }
         }
         else if(item === 'folders'){
-            console.log(id)
             try{
                 const res = await axios.put(`${DB_URL}/${item}/${id}`,{
                     name: newFolderName,
                     folderType: newFolderType,
                     isEdit: false
                 })
-                console.log(res)
                 render()
             }catch(e){
                 console.error(e)
             }
-        }
+        }else if(item === 'list'){
+            try{
+                const res = await axios.put(`${DB_URL}/${item}/${id}`,{
+                    name: newListName,
+                    isEdit: false
+                })
+                render()
+            }catch(e){
+                console.error(e)
+            }
     }
+}
     return (
         <div>
             {isFolder ? 
@@ -56,9 +64,9 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
         }
                  {isList ? 
             <div>
-                <form onSubmit={() =>updateItem(list._id,'list')}>
-                    <input type="text" placeholder="List Name"></input>
-                </form>
+                
+                    <input type="text" placeholder="List Name" onChange={(e) => setNewListName(e.target.value)}></input>
+                    <button onClick={()=>updateItem(list._id,'list')}>Save Edit</button>
             </div>
             :<div> </div>    
         }

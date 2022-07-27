@@ -37,7 +37,8 @@ const updateComplete = async (e,id,index) =>{
     }
 }
 
-const updateFavorite = async (e,id) =>{
+const updateFavorite = async (e,id,index) =>{
+    let toDoArray = [...favList]
     if(e.target.checked === true){
         try{
             const res = await axios.put(`${DB_URL}/todo/${id}`,{
@@ -48,7 +49,9 @@ const updateFavorite = async (e,id) =>{
             console.error(e)
         }
     }
-  renderFavList()
+    toDoArray.splice(index,1)
+    setFavList(toDoArray)
+
 }
 return(
     <div>
