@@ -20,7 +20,8 @@ body{
   background-color: #344E41;
 }
 h2{
-  color:#442126
+  color:#442126;
+  text-align: center;
 }
 h3{
   color:#1b252e
@@ -79,6 +80,9 @@ width: 25vw;
   display: flex;
   justify-content: flex-start;
 }
+.details{
+  font-size: 10px;
+}
 
 .updateComplete{
   margin-right: 10px;
@@ -86,4 +90,33 @@ width: 25vw;
 .addToDos{
   position: sticky;
   top: 0;
+}
+.foldersContainer{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100vw;
+}
+.folders{
+  width: 90vw;
+  height: 90vh;
+}
+#add{
+  padding: 20px;
+  margin-left: 5em;
+}
+.folder{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.innerFolder{
+  display: flex;
+  justify-content: center;
+  width: 10vw;
+}
+.update.folder{
+  margin-left: 3em;
 }

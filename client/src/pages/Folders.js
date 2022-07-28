@@ -66,20 +66,20 @@ const Folders = () =>{
         setFolders(newFolders)
     }
 return(
-    <div id = "foldersContainer">
-        <h2 className = 'Name'>Folders</h2>
+    <div class = 'folders'>
+    <h2 className = 'Name'>Folders</h2>
+    <div class = "foldersContainer">
        {folders.map((folder,index) =>(
-        <div id = 'folder'>
             <Folder renderFolders = {renderFolders} folder={folder} showFolderDetails={showFolderDetails} deleteFolder={deleteFolder} updateFolder={renderEdit} index={index} isEdit={folder.isEdit} />
-        </div>
        ))}
     {makeFolder ? 
-        <div id = "updateFolder"> 
+        <div class = "update folder"> 
             <input type="text"  placeholder='Folder Name' onChange={(e) => nameHandler(e)}></input>
             <input type="text"  placeholder='Folder Type' onChange={(e) => typeHandler(e)}></input>
             <button onClick={createFolder}>Submit</button>
         </div>
     : <button id='add' onClick={() => setMakeFolder(true)}>Add Folder</button>}
+    </div>
     </div>
 )
 

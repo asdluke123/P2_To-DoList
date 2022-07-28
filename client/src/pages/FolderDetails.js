@@ -60,20 +60,20 @@ const FolderDetails = () =>{
         }
     }
     return(
-        <div id = "detailsContainer">
+        <div class = 'folders'>
             <h2 className = 'Name'>{name}</h2>
+        <div class = "foldersContainer">
             {lists.map((list,index) => (
-                <div id="folderLists">
                     <List list={list} showListDetails={showListDetials} deleteList={deleteList} updateList={renderEdit} index ={index} isEdit={list.isEdit} renderLists={renderLists} />
-                </div>
             ))}
             {makeList ? 
-                <div id = "createList"> 
+                <div class = "update folder"> 
                     <input type="text"  placeholder='List Name' onChange={(e) => setListName(e.target.value)}></input>
                     <button onClick={createList}>Submit</button>
                 </div>
             : 
                 <button id='add' onClick={() => setMakeList(true)}>Add List</button>}
+        </div>
         </div>
     )
 

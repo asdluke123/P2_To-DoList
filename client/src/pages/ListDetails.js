@@ -102,14 +102,16 @@ const ListDetails = () =>{
         setListToDos(taskArray)
     }
     return(
-        <div class = "ToDoContainer">
-            <div>
-            <h2 className = 'Name'>{name}</h2>
-            </div>
-            <div class = "toDos">
-            {listToDos.map((todo,index) => (
-                <ToDo renderList = {renderListToDos} todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {todo.isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
-            ))}
+        <div class = "taskContainer">
+            <div className = 'toDoContainer'>
+                <div>
+                    <h2 className = 'Name'>{name}</h2>
+                </div>
+                <div class = "toDos">
+                    {listToDos.map((todo,index) => (
+                        <ToDo renderList = {renderListToDos} todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {todo.isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
+                    ))}
+                </div>
             </div>
             <div class = "addToDos">
                  <input type="text"  placeholder = 'Add new To-DO' value = {todo} onChange={(e) => changeHandler(e)} onKeyUp ={(e) => {
