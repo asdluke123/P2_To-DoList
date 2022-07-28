@@ -18,8 +18,8 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/favorites" element={<Favorite />} />
           <Route path="/folders" element={<Folders />} />
-          {/* <Route path="/folders/:id" element={<FolderDetails />} />
-          <Route path="list/:id" element={<ListDetails />} /> */}
+          <Route path="/folders/:id" element={<FolderDetails />} />
+          {/* <Route path="list/:id" element={<ListDetails />} /> */}
         </Routes>
       </main>
     </div>

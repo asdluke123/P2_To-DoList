@@ -1,9 +1,11 @@
-const List = ({list,showListDetails,updateFunction,removeFunction}) => {
+import Update from "./Update"
+
+const List = ({list,showListDetails,deleteList,updateList,index,isEdit,renderLists}) => {
     return(
-        <div className="list" onClick={() => showListDetails(list._id)}>
-            <h3>{list.name}</h3>
-            <button onClick={() => updateFunction(list._id)}>Update name</button>
-            <button onClick={() => removeFunction(list._id)}>Remove Folder</button>
+        <div className="list" >
+            {isEdit ? <div></div>:<h3 onClick={() => showListDetails(list._id)}>{list.name}</h3>}
+            {isEdit ? <Update render = {renderLists} list={list} isList={true}/> :<button onClick={() => updateList(true,index)}>Update</button>}
+            {isEdit ? <span> </span>:<button onClick={() => deleteList(list._id)}>X</button>}
         </div>
     )
 }

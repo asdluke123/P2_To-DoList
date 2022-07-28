@@ -96,7 +96,7 @@ const Home = () =>{
          editToDo.isEdit = value
         taskArray.splice(index,1,editToDo)
         setTaskToDos(taskArray)
-
+        
     }
     return(
         <div>
@@ -105,7 +105,7 @@ const Home = () =>{
             </div>
             <div>
             {taskToDos.map((todo,index) => (
-                <ToDo todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {todo.isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
+                <ToDo renderList = {renderTaskToDo} todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {todo.isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
             ))}
             </div>
             <div>

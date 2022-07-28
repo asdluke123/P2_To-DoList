@@ -11,16 +11,16 @@ const Folders = () =>{
     const [type,setType] = useState('')
 
     let navigate = useNavigate()
-    useEffect(() =>{
-
-        const renderFolders = async () =>{
-            try{
-                const res = await axios.get(`${DB_URL}/folders`)
-                setFolders(res.data.folders)
-            }catch(e){
-                console.error(e)
-            }
+    
+    const renderFolders = async () =>{
+        try{
+            const res = await axios.get(`${DB_URL}/folders`)
+            setFolders(res.data.folders)
+        }catch(e){
+            console.error(e)
         }
+    }
+    useEffect(() =>{
         renderFolders()
     },[])
 
@@ -64,20 +64,19 @@ const Folders = () =>{
          editFolder.isEdit = value
         newFolders.splice(index,1,editFolder)
         setFolders(newFolders)
-
     }
 return(
     <div>
        {folders.map((folder,index) =>(
         <div>
-            <Folder folder={folder} showFolderDetails={showFolderDetails} deleteFolder={deleteFolder} updateFolder={renderEdit} index={index} isEdit={folder.isEdit} />
+            <Folder renderFolders = {renderFolders} folder={folder} showFolderDetails={showFolderDetails} deleteFolder={deleteFolder} updateFolder={renderEdit} index={index} isEdit={folder.isEdit} />
         </div>
        ))}
     {makeFolder ? 
         <div> 
             <input type="text"  placeholder='Folder Name' onChange={(e) => nameHandler(e)}></input>
             <input type="text"  placeholder='Folder Type' onChange={(e) => typeHandler(e)}></input>
-            <button type='submit' onClick={createFolder}>Submit</button>
+            <button onClick={createFolder}>Submit</button>
         </div>
     : <button id='add' onClick={() => setMakeFolder(true)}>Add Folder</button>}
     </div>
