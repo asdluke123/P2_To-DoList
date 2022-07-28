@@ -53,8 +53,8 @@ const getTodoByListId = async(req,res) =>{
 }
 const getTodoBySearch = async(req,res) =>{
     try{
-        const {id} = await req.params
-        const searchToDos = await ToDo.find({toDo: {$regex: id}})
+        const {search} = await req.params
+        const searchToDos = await ToDo.find({toDo: {$regex: search}})
         return res.status(200).json({searchToDos})
     }catch(e){
         return res.status(500).send(e.message)

@@ -99,16 +99,16 @@ const Home = () =>{
         
     }
     return(
-        <div>
+        <div class = 'ToDoContainer'>
             <div>
             <h2>Tasks</h2>
             </div>
-            <div>
+            <div class = "toDos">
             {taskToDos.map((todo,index) => (
                 <ToDo renderList = {renderTaskToDo} todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {todo.isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
             ))}
             </div>
-            <div>
+            <div class = "addToDos">
                  <input type="text"  placeholder = 'Add new To-DO'onChange={(e) => changeHandler(e)} onKeyUp ={(e) => {
                     if(e.keyCode === 13){
                         createTaskToDo()

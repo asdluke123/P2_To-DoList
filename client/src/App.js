@@ -6,7 +6,9 @@ import ListDetails from './pages/ListDetails'
 import FolderDetails from './pages/FolderDetails'
 import Favorite from './pages/Favorite'
 import Nav from './components/Nav';
+import Search from './pages/Search';
 import './App.css'
+
 function App() {
   return (
     <div className="App">
@@ -20,6 +22,7 @@ function App() {
           <Route path="/folders" element={<Folders />} />
           <Route path="/folders/:id" element={<FolderDetails />} />
           <Route path="list/:name/:id" element={<ListDetails />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </main>
     </div>

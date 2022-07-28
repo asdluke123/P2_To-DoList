@@ -102,16 +102,16 @@ const ListDetails = () =>{
         setListToDos(taskArray)
     }
     return(
-        <div>
+        <div class = "ToDoContainer">
             <div>
             <h2>{name}</h2>
             </div>
-            <div>
+            <div class = "toDos">
             {listToDos.map((todo,index) => (
                 <ToDo renderList = {renderListToDos} todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {todo.isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
             ))}
             </div>
-            <div>
+            <div class = "addToDos">
                  <input type="text"  placeholder = 'Add new To-DO' value = {todo} onChange={(e) => changeHandler(e)} onKeyUp ={(e) => {
                     if(e.keyCode === 13){
                         createToDo()

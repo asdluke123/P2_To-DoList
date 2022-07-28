@@ -54,7 +54,7 @@ const updateFavorite = async (e,id,index) =>{
 
 }
 return(
-    <div>
+    <div id = "favorite">
         {favList.map((todo,index) => (
             <ToDo todo={todo} updateComplete={updateComplete} index = {index} updateFavorite = {updateFavorite} inFavorite = {true}/>
         ))}
