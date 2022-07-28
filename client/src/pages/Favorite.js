@@ -44,7 +44,6 @@ const updateFavorite = async (e,id,index) =>{
             const res = await axios.put(`${DB_URL}/todo/${id}`,{
             favorite: false
         })
-        console.log(res)
         }catch(e){
             console.error(e)
         }

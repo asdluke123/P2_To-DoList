@@ -43,7 +43,6 @@ const ListDetails = () =>{
                 const res = await axios.put(`${DB_URL}/todo/${id}`,{
                 favorite: true
             })
-            console.log(res)
             }catch(e){
                 console.error(e)
             }
@@ -52,7 +51,6 @@ const ListDetails = () =>{
                 const res = await axios.put(`${DB_URL}/todo/${id}`,{
                 favorite: false
             })
-            console.log(res)
             }catch(e){
                 console.error(e)
             }
