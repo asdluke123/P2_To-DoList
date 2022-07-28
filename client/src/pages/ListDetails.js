@@ -40,7 +40,7 @@ const ListDetails = () =>{
     const updateFavorite = async (e,id) =>{
         if(e.target.checked === true){
             try{
-                const res = await axios.put(`${DB_URL}/todo/${id}`,{
+                const res = await axios.put(`/todo/${id}`,{
                 favorite: true
             })
             }catch(e){
@@ -48,7 +48,7 @@ const ListDetails = () =>{
             }
         }else{
             try{
-                const res = await axios.put(`${DB_URL}/todo/${id}`,{
+                const res = await axios.put(`/todo/${id}`,{
                 favorite: false
             })
             }catch(e){

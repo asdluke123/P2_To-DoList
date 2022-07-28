@@ -14,7 +14,7 @@ const Folders = () =>{
     
     const renderFolders = async () =>{
         try{
-            const res = await axios.get(`${DB_URL}/folders`)
+            const res = await axios.get(`folders`)
             setFolders(res.data.folders)
         }catch(e){
             console.error(e)
@@ -36,7 +36,7 @@ const Folders = () =>{
     }
     const createFolder  = async () =>{
        try{ 
-        const res = await axios.post(`${DB_URL}/folders`,{
+        const res = await axios.post(`/folders`,{
             name:folderName,
             folderType: type,
             isEdit: false
@@ -51,7 +51,7 @@ const Folders = () =>{
     const deleteFolder = async (id,index) =>{
         let newFolders = [...folders]
         try{
-            const res = await axios.delete(`${DB_URL}/folders/${id}`)
+            const res = await axios.delete(`/folders/${id}`)
             newFolders.splice(index,1)
             setFolders(newFolders)
         }catch(e){

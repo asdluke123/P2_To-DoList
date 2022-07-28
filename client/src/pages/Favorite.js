@@ -6,7 +6,7 @@ const Favorite = () =>{
     const [favList,setFavList] = useState([])
     const renderFavList = async () =>{
         try{
-            const res = await axios.get(`${DB_URL}/favorite`)
+            const res = await axios.get(`/favorite`)
             setFavList(res.data.toDos)
         }catch(e){
             console.error(e)
@@ -20,7 +20,7 @@ const updateComplete = async (e,id,index) =>{
     let updatedToDo = favList[index]
     let toDoArray = [...favList]
     if(e.target.checked === true){
-        res = await axios.put(`${DB_URL}/todo/${id}`,{
+        res = await axios.put(`/todo/${id}`,{
                 complete : true
         })
         updatedToDo.complete = true
@@ -28,7 +28,7 @@ const updateComplete = async (e,id,index) =>{
         setFavList(toDoArray)
     }
     else{
-         res = await axios.put(`${DB_URL}/todo/${id}`,{
+         res = await axios.put(`/todo/${id}`,{
             complete : false
         })
         updatedToDo.complete = false
@@ -41,7 +41,7 @@ const updateFavorite = async (e,id,index) =>{
     let toDoArray = [...favList]
     if(e.target.checked === true){
         try{
-            const res = await axios.put(`${DB_URL}/todo/${id}`,{
+            const res = await axios.put(`/todo/${id}`,{
             favorite: false
         })
         }catch(e){

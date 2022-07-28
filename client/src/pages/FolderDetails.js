@@ -19,7 +19,7 @@ const FolderDetails = () =>{
 
     const renderLists = async () =>{
         try{
-            const res = await axios.get(`${DB_URL}/folders/${id}`)
+            const res = await axios.get(`/folders/${id}`)
             setLists(res.data.lists)
         }catch(e){
             console.error(e)
@@ -30,7 +30,7 @@ const FolderDetails = () =>{
     },[])
     const createList = async () =>{
         try{
-            const res = await axios.post(`${DB_URL}/folders/${id}`,{
+            const res = await axios.post(`/folders/${id}`,{
                 name: listName,
                 folder: id,
                 isEdit: false
@@ -52,7 +52,7 @@ const FolderDetails = () =>{
     const deleteList = async (id,index) =>{
         let newList = [...lists]
         try{
-            const res = await axios.delete(`${DB_URL}/list/${id}`)
+            const res = await axios.delete(`/list/${id}`)
             newList.splice(index,1)
             setLists(newList)
         }catch(e){

@@ -9,7 +9,7 @@ const Home = () =>{
     
     const renderTaskToDo = async () =>{
         try{
-            const res = await axios.get(`${DB_URL}/list/${taskListId}`)
+            const res = await axios.get(`/list/${taskListId}`)
             setTaskToDos(res.data.todos)
         }catch(e){
             console.error(e)
@@ -21,7 +21,7 @@ const Home = () =>{
     
     const createTaskToDo = async () =>{
         try{
-            const res = await axios.post(`${DB_URL}/list/${taskListId}`,{
+            const res = await axios.post(`/list/${taskListId}`,{
                 toDo: todo,
                 complete: false,
                 list: "62e1e2126a3b1d602a60bda6",
@@ -40,7 +40,7 @@ const Home = () =>{
         let toDoArray = [...taskToDos]
         if(e.target.checked === true){
             try{
-                 res = await axios.put(`${DB_URL}/todo/${id}`,{
+                 res = await axios.put(`/todo/${id}`,{
                 favorite: true
             })
             updatedToDo.favorite = true
@@ -51,7 +51,7 @@ const Home = () =>{
             }
         }else{
             try{
-                 res = await axios.put(`${DB_URL}/todo/${id}`,{
+                 res = await axios.put(`/todo/${id}`,{
                 favorite: false
             })
             updatedToDo.favorite = false
@@ -72,7 +72,7 @@ const Home = () =>{
         let updatedToDo = taskToDos[index]
         let toDoArray = [...taskToDos]
         if(e.target.checked === true){
-            res = await axios.put(`${DB_URL}/todo/${id}`,{
+            res = await axios.put(`/todo/${id}`,{
                     complete : true
             })
             updatedToDo.complete = true
@@ -80,7 +80,7 @@ const Home = () =>{
             setTaskToDos(toDoArray)
         }
         else{
-             res = await axios.put(`${DB_URL}/todo/${id}`,{
+             res = await axios.put(`/todo/${id}`,{
                 complete : false
             })
             updatedToDo.complete = false
@@ -91,7 +91,7 @@ const Home = () =>{
     const deleteToDo = async (id,index) =>{
         let toDoArray = [...taskToDos]
         try{
-            const res = await axios.delete(`${DB_URL}/todo/${id}`)
+            const res = await axios.delete(`/todo/${id}`)
             toDoArray.splice(index,1)
             setTaskToDos(toDoArray)
         }catch(e){
