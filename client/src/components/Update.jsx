@@ -9,10 +9,21 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
     const [newListName,setNewListName] = useState()
     const updateItem = async (id,item) =>{
         if(item === 'todo'){
+            if(newToDoNote){
             try{
                 const res = await axios.put(`${DB_URL}/${item}/${id}`,{
                     toDo: newToDo,
-                    note: newToDoNote,
+                    note: `Note: ${newToDoNote}`,
+                    isEdit: false
+                })
+                render()
+            }catch(e){
+                console.error(e)
+            }
+        }else{
+            try{
+                const res = await axios.put(`${DB_URL}/${item}/${id}`,{
+                    toDo: newToDo,
                     isEdit: false
                 })
                 render()
@@ -20,6 +31,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
                 console.error(e)
             }
         }
+    }
         else if(item === 'folders'){
             try{
                 const res = await axios.put(`${DB_URL}/${item}/${id}`,{
@@ -46,8 +58,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
     return (
         <div>
             {isFolder ? 
-            <div>
-        
+            <div className="update">
                     <input type="text" placeholder="Folder Name" onChange= {(e) => setNewFolderName(e.target.value)}></input>
                     <input type="text" placeholder="Folder Type" onChange= {(e) => setNewFolderType(e.target.value)}></input>
                     <button onClick={()=>updateItem(folder._id,'folders')}>Save Edit</button>
@@ -55,7 +66,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
             :<div> </div>    
         }
                  {isToDo ? 
-            <div>
+            <div className="update">
                     <input type="text" placeholder="New ToDo" onChange= {(e) => setNewToDo(e.target.value)}></input>
                     <input type="text" placeholder="Add Note" onChange={(e) => setNewToDoNote(e.target.value)}></input>
                     <button onClick={()=>updateItem(todo._id,'todo')}>Save Edit</button>
@@ -63,7 +74,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
             :<div> </div>    
         }
                  {isList ? 
-            <div>
+            <div className="update">
                 
                     <input type="text" placeholder="List Name" onChange={(e) => setNewListName(e.target.value)}></input>
                     <button onClick={()=>updateItem(list._id,'list')}>Save Edit</button>

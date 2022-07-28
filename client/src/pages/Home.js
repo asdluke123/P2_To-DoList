@@ -29,26 +29,34 @@ const Home = () =>{
                 isEdit: false
             })
             setTaskToDos([...taskToDos,res.data.toDo])
+            setTodo('')
         }catch(e){
             console.error(e)
         }
     }
-    const updateFavorite = async (e,id) =>{
+    const updateFavorite = async (e,id,index) =>{
+        let res = null
+        let updatedToDo = taskToDos[index]
+        let toDoArray = [...taskToDos]
         if(e.target.checked === true){
             try{
-                const res = await axios.put(`${DB_URL}/todo/${id}`,{
+                 res = await axios.put(`${DB_URL}/todo/${id}`,{
                 favorite: true
             })
-            console.log(res)
+            updatedToDo.favorite = true
+            toDoArray.splice(index,1,updatedToDo)
+            setTaskToDos(toDoArray)
             }catch(e){
                 console.error(e)
             }
         }else{
             try{
-                const res = await axios.put(`${DB_URL}/todo/${id}`,{
+                 res = await axios.put(`${DB_URL}/todo/${id}`,{
                 favorite: false
             })
-            console.log(res)
+            updatedToDo.favorite = false
+            toDoArray.splice(index,1,updatedToDo)
+            setTaskToDos(toDoArray)
             }catch(e){
                 console.error(e)
             }
@@ -99,22 +107,26 @@ const Home = () =>{
         
     }
     return(
-        <div class = 'ToDoContainer'>
-            <div>
-            <h2>Tasks</h2>
-            </div>
-            <div class = "toDos">
-            {taskToDos.map((todo,index) => (
-                <ToDo renderList = {renderTaskToDo} todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {todo.isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
-            ))}
+    <main>
+        <div class = 'taskContainer'>
+            <div className = 'toDoContainer'>
+                <div>
+                <h2 className = 'Name'>Tasks</h2>
+                </div>
+                <div class = "toDos">
+                {taskToDos.map((todo,index) => (
+                    <ToDo renderList = {renderTaskToDo} todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {todo.isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
+                ))}
+                </div>
             </div>
             <div class = "addToDos">
-                 <input type="text"  placeholder = 'Add new To-DO'onChange={(e) => changeHandler(e)} onKeyUp ={(e) => {
+                 <input class ='makeToDo' type="text"  placeholder = 'Add new To-DO' value = {todo} onChange={(e) => changeHandler(e)} onKeyUp ={(e) => {
                     if(e.keyCode === 13){
                         createTaskToDo()
                     }}}></input>
             </div>
         </div>
+    </main>
     )
     
 }

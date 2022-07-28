@@ -104,7 +104,7 @@ const ListDetails = () =>{
     return(
         <div class = "ToDoContainer">
             <div>
-            <h2>{name}</h2>
+            <h2 className = 'Name'>{name}</h2>
             </div>
             <div class = "toDos">
             {listToDos.map((todo,index) => (

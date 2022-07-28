@@ -1,3 +1,89 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+nav{
+  display: flex;
+  justify-content: center;
+}
+a{
+  margin-left: 10px;
+  text-decoration: none;
+}
+a:link, a:visited {
+  color: #DAD7CD;
+}
+body{
+  width: 100vw;
+  height: 100vh;
+  background-color: #344E41;
+}
+h2{
+  color:#442126
+}
+h3{
+  color:#1b252e
+}
+p{
+  color:#c7bbaf;
+}
+.delete{
+  background-color: transparent;
+  border: none;
+  margin-left: .6em;
+}
+.favButton{
+  margin-left: .6em;
+}
+.update{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.delete:hover{
+  color: rgb(167, 7, 7);
+}
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.taskContainer{
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toDoContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.todo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+height: 10vh;
+width: 25vw;
+}
+.innerToDo{
+  width: 10vw;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.updateComplete{
+  margin-right: 10px;
+}
+.addToDos{
+  position: sticky;
+  top: 0;
 }

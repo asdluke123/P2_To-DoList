@@ -24,8 +24,8 @@ const Folders = () =>{
         renderFolders()
     },[])
 
-    const showFolderDetails = (id) =>{
-        navigate(`/folders/${id}`)  
+    const showFolderDetails = (id,folderName) =>{
+        navigate(`/folders/${folderName}/${id}`)  
     }
 
     const nameHandler = (e) =>{
@@ -67,6 +67,7 @@ const Folders = () =>{
     }
 return(
     <div id = "foldersContainer">
+        <h2 className = 'Name'>Folders</h2>
        {folders.map((folder,index) =>(
         <div id = 'folder'>
             <Folder renderFolders = {renderFolders} folder={folder} showFolderDetails={showFolderDetails} deleteFolder={deleteFolder} updateFolder={renderEdit} index={index} isEdit={folder.isEdit} />

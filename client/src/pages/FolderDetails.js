@@ -9,6 +9,7 @@ const FolderDetails = () =>{
     const [makeList,setMakeList] = useState(false)
     const [listName,setListName] = useState()
     const {id} = useParams()
+    const {name} = useParams()
     let navigate = useNavigate()
 
 
@@ -60,6 +61,7 @@ const FolderDetails = () =>{
     }
     return(
         <div id = "detailsContainer">
+            <h2 className = 'Name'>{name}</h2>
             {lists.map((list,index) => (
                 <div id="folderLists">
                     <List list={list} showListDetails={showListDetials} deleteList={deleteList} updateList={renderEdit} index ={index} isEdit={list.isEdit} renderLists={renderLists} />
