@@ -1,8 +1,6 @@
 import { DB_URL } from "../global"
 import axios from "axios"
-import { useState } from "react"
 const Update = ({folder,todo,list,isToDo,isFolder,isList}) =>{
-const [newItem,setNewItem] = useState()
     const updateItem = async (id,item,newItem) =>{
         try{
             const res = await axios.put(`${DB_URL}/${item}/${id}`,{
@@ -25,7 +23,7 @@ const [newItem,setNewItem] = useState()
         }
                  {isToDo ? 
             <div>
-                    <input type="text" placeholder="New ToDo"  onChange={(e) => setNewItem(e.target.value)} onKeyUp={(e) => {
+                    <input type="text" placeholder="New ToDo" onKeyUp={(e) => {
                         if(e.keyCode === 13){
                             updateItem(todo._id,'todo',e.target.value)
                         }
