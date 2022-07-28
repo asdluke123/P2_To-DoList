@@ -4,12 +4,10 @@ import { DB_URL } from '../global'
 import Folder from '../components/Folder'
 import { navigate } from 'react-router-dom'
 import AddFolder from '../components/Update'
+import { createFolder } from '../../../controllers'
 const Folders = () =>{
     const [folders,SetFolders] = useState([])
-  
-    
-
-
+    const [makeFolder,setMakeFolder] = useState(false)
     useEffect(() =>{
         const renderFolders = async () =>{
             try{
@@ -27,8 +25,16 @@ const Folders = () =>{
     }
 return(
     <div>
-    <button id = 'add'onClick = {addFolder()}>Add Folder</button>
-    
+        
+    {makeFolder? 
+        <div> 
+        <form onSubmit={createFolder()}>
+            <input type="text"  placeholder='Folder Name'onChange={(e) => nameHandler(e)}></input>
+            <input type="text"  placeholder='Folder Type'onChange={(e) => typeHandler(e)}></input>
+            <button type='submit'>Submit</button>
+        </form>
+        </div>
+    :<button id = 'add'onClick = {addFolder()}>Add Folder</button>}
     </div>
 )
 

@@ -3,20 +3,20 @@ import axios from 'axios'
 import { DB_URL } from '../global'
 import ToDo  from '../components/ToDo'
 const Home = () =>{
-    const [todo,setTodo] = useState({})
-    const [input,setInput] = useState()
-    const [taskToDos,setTaskToDos] = useState([])
+    const [todo,setTodo] = useState()
+    const [isEdit,setIsEdit] = useState(false)
+    const [taskToDos,setTaskToDos] = useState([])   
     const taskListId = "62e1e2126a3b1d602a60bda6"
-    let complete = []
-    useEffect(() =>{
-        const renderTaskToDo = async () =>{
-            try{
-                const res = await axios.get(`${DB_URL}/list/${taskListId}`)
-                setTaskToDos(res.data.todos)
-            }catch(e){
-                console.error(e)
-            }
+    
+    const renderTaskToDo = async () =>{
+        try{
+            const res = await axios.get(`${DB_URL}/list/${taskListId}`)
+            setTaskToDos(res.data.todos)
+        }catch(e){
+            console.error(e)
         }
+    }
+    useEffect(() =>{
         renderTaskToDo()
     },[todo])
     
@@ -28,14 +28,35 @@ const Home = () =>{
                 list: "62e1e2126a3b1d602a60bda6",
                 favorite: false
             })
-            console.log(res)
+            setTaskToDos([...taskToDos,res.data.toDo])
         }catch(e){
             console.error(e)
         }
     }
+    const updateFavorite = async (e,id) =>{
+        if(e.target.checked === true){
+            try{
+                const res = await axios.put(`${DB_URL}/todo/${id}`,{
+                favorite: true
+            })
+            console.log(res)
+            }catch(e){
+                console.error(e)
+            }
+        }else{
+            try{
+                const res = await axios.put(`${DB_URL}/todo/${id}`,{
+                favorite: false
+            })
+            console.log(res)
+            }catch(e){
+                console.error(e)
+            }
+        }
 
+    }
     const changeHandler= (e) =>{
-        setInput(e.target.value)
+        setTodo(e.target.value)
     }
 
     const updateComplete = async (e,id,index) =>{
@@ -59,7 +80,6 @@ const Home = () =>{
             setTaskToDos(toDoArray)
         }
     }
-
     const deleteToDo = async (id,index) =>{
         let toDoArray = [...taskToDos]
         try{
@@ -70,6 +90,10 @@ const Home = () =>{
             console.error(e)
         }
     }
+    const renderEdit = (value) =>{
+        setIsEdit(value)
+        renderTaskToDo()
+    }
     return(
         <div>
             <div>
@@ -77,17 +101,14 @@ const Home = () =>{
             </div>
             <div>
             {taskToDos.map((todo,index) => (
-                <ToDo todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo}  />
+                <ToDo todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {isEdit} updateFavorite = {updateFavorite}/>
             ))}
             </div>
             <div>
-                <input type="text" onChange={(e) => changeHandler(e)} onKeyUp ={(e) => {
+                {isEdit? <div> </div>:<input type="text"  placeholder = 'Add new To-DO'onChange={(e) => changeHandler(e)} onKeyUp ={(e) => {
                     if(e.keyCode === 13){
-                        setTodo(input)
                         createTaskToDo()
-                    }
-                }
-                }></input>
+                    }}}></input>}
             </div>
         </div>
     )

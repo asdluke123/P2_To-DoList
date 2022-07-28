@@ -1,26 +1,42 @@
-const Update = ({folder,todo,list,updateToDo,updateFolder,updateList}) =>{
+import { DB_URL } from "../global"
+import axios from "axios"
+import { useState } from "react"
+const Update = ({folder,todo,list,isToDo,isFolder,isList}) =>{
+const [newItem,setNewItem] = useState()
+    const updateItem = async (id,item,newItem) =>{
+        try{
+            const res = await axios.put(`${DB_URL}/${item}/${id}`,{
+                toDo: newItem
+            })
+            console.log(res)
+        }catch(e){
+            console.error(e)
+        }
+    }
     return (
         <div>
-            {folder ? 
+            {isFolder ? 
             <div>
-                <form onSubmit={updateFolder}>
+                <form onSubmit={() =>updateItem(folder._id,'folders')}>
                     <input type="text" placeholder="Folder Name"></input>
-                    <input type="text" placeholder="Folder Type"></input>
                 </form>
             </div>
             :<div> </div>    
         }
-                 {todo ? 
+                 {isToDo ? 
             <div>
-                <form onSubmit={updateToDo}>
-                    <input type="text" placeholder="New ToDo"></input>
-                </form>
+                    <input type="text" placeholder="New ToDo"  onChange={(e) => setNewItem(e.target.value)} onKeyUp={(e) => {
+                        if(e.keyCode === 13){
+                            updateItem(todo._id,'todo',e.target.value)
+                        }
+                    }}></input>
+
             </div>
             :<div> </div>    
         }
-                 {list ? 
+                 {isList ? 
             <div>
-                <form onSubmit={updateList}>
+                <form onSubmit={() =>updateItem(list._id,'list')}>
                     <input type="text" placeholder="List Name"></input>
                 </form>
             </div>
@@ -28,7 +44,5 @@ const Update = ({folder,todo,list,updateToDo,updateFolder,updateList}) =>{
         }
         </div>
     )
-
-
 }
 export default Update

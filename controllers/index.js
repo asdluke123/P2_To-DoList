@@ -1,3 +1,4 @@
+const { restart } = require('nodemon')
 const { Folder,List,ToDo } = require('../models')
 
 const getAllFolders = async(req,res) =>{
@@ -55,7 +56,7 @@ const createToDo = async(req,res) =>{
     try{
         const toDo = await new ToDo(req.body)
         await toDo.save()
-        return res.status(201).json({toDo})
+        return res.status(200).json({toDo})
     }catch(e){
         return res.status(500).send(e.message)
     }
@@ -64,7 +65,7 @@ const createList = async(req,res) =>{
     try{
         const list = await new List(req.body)
         await list.save()
-        return res.status(201).json({list})
+        return res.status(200).json({list})
     }catch(e){
         return res.status(500).send(e.message)
     }
@@ -73,7 +74,7 @@ const createFolder = async(req,res) =>{
     try{
         const folder = await new Folder(req.body)
         await folder.save()
-        return res.status(201).json({folder})
+        return res.status(200).json({folder})
     }catch(e){
         return res.status(500).send(e.message)
     }
@@ -81,7 +82,7 @@ const createFolder = async(req,res) =>{
 const updatetoDo = async(req,res) =>{
     try{
         const todo = await ToDo.findByIdAndUpdate(req.params.id,req.body,{new:true})
-        res.status(200).json(todo)
+        return res.status(200).json(todo)
     }catch(e){
         return res.status(500).send(e.message)
     }
@@ -89,7 +90,7 @@ const updatetoDo = async(req,res) =>{
 const updateList = async(req,res) =>{
     try{
         const list = await List.findByIdAndUpdate(req.params.id,req.body,{new:true})
-        res.status(200).json(list)
+        return res.status(200).json(list)
     }catch(e){
         return res.status(500).send(e.message)
     }
@@ -97,7 +98,7 @@ const updateList = async(req,res) =>{
 const updateFolder = async(req,res) =>{
     try{
         const folder = await Folder.findByIdAndUpdate(req.params.id,req.body,{new:true})
-        res.status(200).json(folder)
+       return  res.status(200).json(folder)
     }catch(e){
         return res.status(500).send(e.message)
     }
@@ -109,7 +110,6 @@ const deleteFolder = async(req,res) =>{
         let deletedToDo
         lists.forEach( async (list)  =>{ 
          deletedToDo = await ToDo.deleteMany({list: list._id})
-        console.log(results)
         })
        const deletedList = await List.deleteMany({folder: id})
        const deletedFolder = await  Folder.deleteMany({ _id: id})
@@ -128,7 +128,7 @@ const deleteFolder = async(req,res) =>{
 
 const deleteList = async(req,res) => {
     try{
-        const {id} =  req.params
+        const {id} =  await req.params
         const deletedToDo= await ToDo.deleteMany({list: id})
         const deletedList = await List.deleteMany({_id:id})
         if(deletedToDo && deletedList){
