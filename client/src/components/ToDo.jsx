@@ -1,12 +1,11 @@
-const ToDo = ({todo,updateComplete,updateFunction,removeFunction,updateFavorite}) => {
+const ToDo = ({todo,updateComplete,updateFunction,deleteToDo,updateFavorite,index}) => {
 return(
     <div className="todo">
-        <input type="radio" onClick = {(e) => updateComplete(todo._id,e)}></input>
-        <p>{todo.toDo}</p>
-        <button onClick={() => updateFunction(todo._id)}>Update</button>
-        <button onClick={() => removeFunction(todo._id)}>X</button>
-        <input type="radio" onClick = {() => updateFavorite(todo._id)}></input>
-        
+        <input type="checkbox"  onClick = {(e) => updateComplete(e,todo._id,index)}></input>
+        {todo.complete ? <del><p>{todo.toDo}</p></del> : <p>{todo.toDo}</p>}
+        <button onClick={() => updateFunction(todo._id,index)}>Update</button>
+        <button onClick={() => deleteToDo(todo._id)}>X</button>
+        <input type="checkbox" onClick = {() => updateFavorite(todo._id)}></input>
     </div>
 )
 }
