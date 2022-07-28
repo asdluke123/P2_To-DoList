@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Folders from './pages/Folders'
 import ListDetails from './pages/ListDetails'
 import FolderDetails from './pages/FolderDetails'
-import Favortie from './pages/Favorite'
+import Favorite from './pages/Favorite'
 import Nav from './components/Nav';
 import './App.css'
 function App() {
@@ -16,7 +16,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />}/>
-          <Route path="/favorites" element={<Favortie />} />
+          <Route path="/favorites" element={<Favorite />} />
           <Route path="/folders" element={<Folders />} />
           {/* <Route path="/folders/:id" element={<FolderDetails />} />
           <Route path="list/:id" element={<ListDetails />} /> */}

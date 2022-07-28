@@ -4,7 +4,6 @@ import { DB_URL } from '../global'
 import ToDo  from '../components/ToDo'
 const Home = () =>{
     const [todo,setTodo] = useState()
-    const [isEdit,setIsEdit] = useState(false)
     const [taskToDos,setTaskToDos] = useState([])   
     const taskListId = "62e1e2126a3b1d602a60bda6"
     
@@ -26,7 +25,8 @@ const Home = () =>{
                 toDo: todo,
                 complete: false,
                 list: "62e1e2126a3b1d602a60bda6",
-                favorite: false
+                favorite: false,
+                isEdit: false
             })
             setTaskToDos([...taskToDos,res.data.toDo])
         }catch(e){
@@ -90,9 +90,13 @@ const Home = () =>{
             console.error(e)
         }
     }
-    const renderEdit = (value) =>{
-        setIsEdit(value)
-        renderTaskToDo()
+    const renderEdit = (value,index) =>{
+        let editToDo = taskToDos[index]
+        let taskArray = [...taskToDos]
+         editToDo.isEdit = value
+        taskArray.splice(index,1,editToDo)
+        setTaskToDos(taskArray)
+
     }
     return(
         <div>
@@ -101,14 +105,14 @@ const Home = () =>{
             </div>
             <div>
             {taskToDos.map((todo,index) => (
-                <ToDo todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
+                <ToDo todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {todo.isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
             ))}
             </div>
             <div>
-                {isEdit? <div> </div>:<input type="text"  placeholder = 'Add new To-DO'onChange={(e) => changeHandler(e)} onKeyUp ={(e) => {
+                 <input type="text"  placeholder = 'Add new To-DO'onChange={(e) => changeHandler(e)} onKeyUp ={(e) => {
                     if(e.keyCode === 13){
                         createTaskToDo()
-                    }}}></input>}
+                    }}}></input>
             </div>
         </div>
     )

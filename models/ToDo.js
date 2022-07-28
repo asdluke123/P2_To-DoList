@@ -8,7 +8,8 @@ const ToDo = new Schema(
         complete: {type: Boolean,required:true},
         list: {type:Schema.Types.ObjectId,ref: "List",required:true},
         note:{type:String,required:false},
-        favorite:{type: Boolean,required:true}
+        favorite:{type: Boolean,required:true},
+        isEdit:{type:Boolean,required:true}
     },{timestamps:true}
 )
 

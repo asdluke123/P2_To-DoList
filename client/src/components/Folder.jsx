@@ -1,9 +1,11 @@
-const Folder = ({folder,showFolderDetails,removeFunction,updateFunction}) => {
+import Update from "./Update"
+const Folder = ({folder,showFolderDetails,deleteFolder,updateFolder,index,isEdit}) => {
     return(
-        <div className="folder" onClick={() => showFolderDetails(folder._id)}>
-            <h3>{folder.name}</h3>
-            <button onClick={() => updateFunction(folder._id)}>Update name</button>
-            <button onClick={() => removeFunction(folder._id)}>Remove Folder</button>
+        <div className="folder" >
+            {isEdit ? <div></div>:<h3 onClick={() => showFolderDetails(folder._id)}>{folder.name}</h3>}
+            {isEdit ? <Update folder={folder} isFolder={true}/> :<button onClick={() => updateFolder(true,index)}>Update</button>}
+            {isEdit ? <button onClick={() => updateFolder(false,index)}>Save Edit</button> :<button onClick={() => deleteFolder(folder._id)}>X</button>}
+
         </div>
     )
 }

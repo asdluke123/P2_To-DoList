@@ -1,6 +1,9 @@
 import { DB_URL } from "../global"
 import axios from "axios"
 const Update = ({folder,todo,list,isToDo,isFolder,isList}) =>{
+    // const [newToDo,setNewToDo] = useState()
+    // const [newToDoNote,setNewToDoNote] = is
+
     const updateItem = async (id,item,newItem) =>{
         try{
             const res = await axios.put(`${DB_URL}/${item}/${id}`,{
@@ -27,6 +30,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList}) =>{
                         if(e.keyCode === 13){
                             updateItem(todo._id,'todo',e.target.value)
                         }
+                        <input type="text" placeholder="Add Note"></input>
                     }}></input>
 
             </div>

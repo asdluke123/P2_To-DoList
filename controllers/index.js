@@ -62,7 +62,7 @@ const getTodoBySearch = async(req,res) =>{
 }
 const createToDo = async(req,res) =>{
     try{
-        const toDo = await new ToDo(req.body)
+        const toDo =  new ToDo(req.body)
         await toDo.save()
         return res.status(200).json({toDo})
     }catch(e){
@@ -71,7 +71,7 @@ const createToDo = async(req,res) =>{
 }
 const createList = async(req,res) =>{
     try{
-        const list = await new List(req.body)
+        const list =  new List(req.body)
         await list.save()
         return res.status(200).json({list})
     }catch(e){
@@ -80,7 +80,7 @@ const createList = async(req,res) =>{
 }
 const createFolder = async(req,res) =>{
     try{
-        const folder = await new Folder(req.body)
+        const folder =  new Folder(req.body)
         await folder.save()
         return res.status(200).json({folder})
     }catch(e){

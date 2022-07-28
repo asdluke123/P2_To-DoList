@@ -7,10 +7,12 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 const main = async () =>{
     const baseList = [
         {
-        name: "Tasks"
+        name: "Tasks",
+        isEdit: false
         },
         {
-        name: "Faviortes"
+        name: "Faviortes",
+        isEdit: false
         }
 
 ]
