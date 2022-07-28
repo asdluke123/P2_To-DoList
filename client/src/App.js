@@ -16,7 +16,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />}/>
-          {/* <Route path="/favorites" element={<Favortie />} /> */}
+          <Route path="/favorites" element={<Favortie />} />
           <Route path="/folders" element={<Folders />} />
           {/* <Route path="/folders/:id" element={<FolderDetails />} />
           <Route path="list/:id" element={<ListDetails />} /> */}

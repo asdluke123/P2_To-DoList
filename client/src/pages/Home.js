@@ -101,7 +101,7 @@ const Home = () =>{
             </div>
             <div>
             {taskToDos.map((todo,index) => (
-                <ToDo todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {isEdit} updateFavorite = {updateFavorite}/>
+                <ToDo todo={todo} updateComplete={updateComplete} index = {index} deleteToDo = {deleteToDo} updateToDo = {renderEdit} isEdit = {isEdit} updateFavorite = {updateFavorite} inFavorite = {false}/>
             ))}
             </div>
             <div>

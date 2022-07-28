@@ -25,6 +25,14 @@ const getFavoriteList = async(req,res) =>{
         return res.status(500).send(e.message)
     }
 }
+const getFavoriteToDos = async(req,res) =>{
+    try{
+        const toDos = await ToDo.find({favorite: true})
+        return res.status(200).json({toDos})
+    }catch(e){
+        return res.status(500).send(e.message)
+    }
+}
 const getListbyFolderId = async(req,res) =>{
     try{
         const {id} = await req.params
@@ -160,6 +168,7 @@ const deleteToDo = async(req,res) =>{
         getTodoBySearch,
         getFavoriteList,
         getTasksLists,
+        getFavoriteToDos,
         createFolder,
         createList,
         createToDo,
