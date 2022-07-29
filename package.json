@@ -8,9 +8,6 @@
     "morgan": "^1.10.0",
     "react-router-dom": "^6.3.0"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.19"
-  },
   "name": "p2_to-dolist",
   "description": "***",
   "version": "1.0.0",
