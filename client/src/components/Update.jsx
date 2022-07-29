@@ -22,7 +22,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
             }
         }else{
             try{
-                const res = await axios.put(`${DB_URL}/${item}/${id}`,{
+                const res = await axios.put(`/${item}/${id}`,{
                     toDo: newToDo,
                     isEdit: false
                 })
@@ -34,7 +34,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
     }
         else if(item === 'folders'){
             try{
-                const res = await axios.put(`${DB_URL}/${item}/${id}`,{
+                const res = await axios.put(`/${item}/${id}`,{
                     name: newFolderName,
                     folderType: newFolderType,
                     isEdit: false
@@ -45,7 +45,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
             }
         }else if(item === 'list'){
             try{
-                const res = await axios.put(`${DB_URL}/${item}/${id}`,{
+                const res = await axios.put(`/${item}/${id}`,{
                     name: newListName,
                     isEdit: false
                 })
