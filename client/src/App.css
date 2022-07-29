@@ -116,3 +116,10 @@ main{
 .update.folder{
   margin-left: 3em;
 }
+
+.searchToDo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
