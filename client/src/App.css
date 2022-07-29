@@ -76,7 +76,7 @@ main{
   width: 25vw;
 }
 .innerToDo{
-  width: 10vw;
+  width: 70vw;
   display: flex;
   justify-content: center;
 }
