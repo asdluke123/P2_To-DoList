@@ -39,6 +39,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
                     folderType: newFolderType,
                     isEdit: false
                 })
+                
                 render()
             }catch(e){
                 console.error(e)

@@ -41,6 +41,7 @@ const Folders = () =>{
             folderType: type,
             isEdit: false
         })
+        setType('')
         let newFolders = [...folders,res.data.folder]
         setFolders(newFolders)
     }catch(e){
