@@ -11,7 +11,7 @@ const Update = ({folder,todo,list,isToDo,isFolder,isList,render}) =>{
         if(item === 'todo'){
             if(newToDoNote){
             try{
-                const res = await axios.put(`${DB_URL}/${item}/${id}`,{
+                const res = await axios.put(`/${item}/${id}`,{
                     toDo: newToDo,
                     note: `Note: ${newToDoNote}`,
                     isEdit: false
