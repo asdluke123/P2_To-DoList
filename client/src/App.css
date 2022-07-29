@@ -72,13 +72,13 @@ main{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-height: 10vh;
-width: 25vw;
+  height: 10vh;
+  width: 25vw;
 }
 .innerToDo{
   width: 10vw;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .details{
   font-size: 10px;
