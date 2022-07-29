@@ -1,4 +1,3 @@
-const { restart } = require('nodemon')
 const { Folder,List,ToDo } = require('../models')
 
 const getAllFolders = async(req,res) =>{
